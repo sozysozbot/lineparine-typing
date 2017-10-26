@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>リパライン語単語分解</title>
+<style>
+@font-face {
+    font-family: "Cirlipa";
+    src: url("./cirlxarli_liparxe_1.woff");  format('woff');
+}
+textarea{
+    font-family: "Cirlipa"; font-size:300%;
+}
+
+
+.nolipa { font-family:"Arial"; }
+
+.log{width:70%; margin: 0 auto;}
+</style>
+</head>
+<body>
+a
+<hr>
+<div class="log">
+<h3>開発ログ</h3>
+<h4>1. 準備</h4>
+<p>使用する単語リストは、リパライン語OTM-JSONから頭字語などを取り除いた<a href="https://github.com/sozysozbot/akrantiain2/blob/master/samples/input_sample/input_sample_lineparine_renewed.txt">この</a>ファイルから、ピリオドやスペースの入った人名や略号など（la+単語として登録されていたものを含む）などを除いた<a href="words.txt">ファイル</a>。6557項目が登録されている。</p>
+<p>さて、実はリパライン語には「<a href="https://fafss.slack.com/archives/C7DC7976K/p1506990956000054">単語と単語がくっ付くときは-r-でしかないのと、-r-はそこまで頻繁に使われないから大半の単語の語幹は一意に決められる</a>」という特性がある。登録されている項目をハイフンの位置により「独立単語」「前置辞」「語中辞」「語尾辞」に分類すれば、独立語と独立語の間には-r-が入るということである。</p>
+<p>要するに、「どちらかの側にはハイフンが入っている」という原則と考えれば良い。例を挙げれば、<code>dytyleter</code>は<code>dyty-</code>, <code>-l-</code>, <code>et</code>, <code>-er</code>と分解されるが、このとき項目と項目の間には1つ以上のハイフンが入っている。</p>
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">とりあえず素朴な実装をして、「いや、この分解はありえない」とかを指摘してもらった方がいいか</p>&mdash; .sozysozbot.@hsjoihs (@sosoBOTpi) <a href="https://twitter.com/sosoBOTpi/status/923338213392969729?ref_src=twsrc%5Etfw">2017年10月25日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>とりあえず、文法的な考察をする前に、この条件だけで全探索するプログラムを書いてみるか。やってくうちに追加条件が出てくるでしょう</p>
+
+</div>
+</body>
+</html>
