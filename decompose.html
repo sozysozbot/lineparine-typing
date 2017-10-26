@@ -24,7 +24,7 @@ body{width:70%; margin: 0 auto;}
 </head>
 <body>
 <div id="main">
-単語を入力：<input type="text" id="word" value="dytyleter"/><input type="button" onclick="gui(document.getElementById('word').value)" value="分解">
+単語を入力（複数可）：<input type="text" id="word" size="50" value="dytyleter paskeffesnej laaxmelen"/><input type="button" onclick="gui(document.getElementById('word').value)" value="分解">
 <div id="ans"></div>
 </div>
 <hr>
@@ -87,6 +87,7 @@ body{width:70%; margin: 0 auto;}
 <p>とりあえず、「必ず語末」「接頭辞・語中辞の後には来ない」が言えるので実装する。</p>
 <p>実装した。</p>
 <p>「緩衝音が連続することは無い」と言われた。実装した。["dyty-","-l-","et","-er"], ["pask-","-effe","-snej"], ["la","-axm","-el","-en"]が完璧に分解され、「緩衝音が連続しないことは重要だったんやな……」「雰囲気で読んでるからほんとこういう実装をする時に本質が見えてくるのすこ」となった。よきかな。</p>
+<p>このことを自慢できるように、複数の単語を入力できるようにした。</p>
 </div>
 </body>
 </html>
