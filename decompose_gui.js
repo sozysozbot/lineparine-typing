@@ -1,6 +1,8 @@
 function gui(txt)
 {
-	var words = txt.split(" ");
+	var words = txt.toLowerCase()
+		.replace(/,/g," ").replace(/\./g," ")
+		.replace(/\s+/g," ").split(" ");
 
 	var text = "";
 
