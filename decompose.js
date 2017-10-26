@@ -3,6 +3,15 @@ function decompose(text)
 	return decompose_(text, "INITIAL");
 }
 
+function getW()
+{
+	if(document.getElementById("obsolete").checked){
+		return W_OLD;
+	} else {
+		return W;
+	}
+}
+
 /*
  * parse, from left, the possible parsing that can come after the previousState
  * if impossible, returns an empty array
@@ -11,7 +20,7 @@ function decompose(text)
  */
 function decompose_(text, previousState)
 {
-	var possibleStates = W.rules
+	var possibleStates = getW().rules
 		.filter(function(arr){return arr && arr[0] == previousState})
 		.map(function(arr){return arr[1]});
 
@@ -26,8 +35,8 @@ function decompose_(text, previousState)
 	var ans = [];
 	for(var i=0; i<possibleStates.length; i++) {
 		if(possibleStates[i] === "FINAL"){ continue; }
-		
-		var candidate = W.words[possibleStates[i]].filter(function(c){
+
+		var candidate = getW().words[possibleStates[i]].filter(function(c){
 			return text.startsWith(c.replace(/-/g,""))
 		});
 
