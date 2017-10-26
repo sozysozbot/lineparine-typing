@@ -15,11 +15,18 @@ textarea{
 
 .nolipa { font-family:"Arial"; }
 
-.log{width:70%; margin: 0 auto;}
+body{width:70%; margin: 0 auto;}
+#main{font-size:120%; margin: 30px;}
 </style>
+<script src="decompose.js"></script>
+<script src="decompose_gui.js"></script>
+<script src="w.js"></script>
 </head>
 <body>
-a
+<div id="main">
+単語を入力：<input type="text" id="word" value="dytyleter"/><input type="button" onclick="gui(document.getElementById('word').value)" value="分解">
+<div id="ans"></div>
+</div>
 <hr>
 <div class="log">
 <h3>開発ログ</h3>
@@ -34,6 +41,8 @@ a
 <h4>2. 軽く実装</h4>
 <p>とりあえず、ハイフンの有無で4ファイルに分離。</p>
 <p>規則も記述してJSONにする。</p>
+<p>実装できた。</p>
+<img src="demo.png" width="500"/>
 
 </div>
 </body>
