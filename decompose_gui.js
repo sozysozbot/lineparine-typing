@@ -1,8 +1,15 @@
+function split(txt)
+{
+	return txt.toLowerCase()
+		.replace(/[,\.\?!<>":【】=…()\/―]/g," ")
+		.replace(/\s+/g," ").split(" ")
+		.filter(function(a){return a.length>0;});
+}
+var FISTIR = [];
 function gui(txt)
 {
-	var words = txt.toLowerCase()
-		.replace(/[,\.\?!]/g," ")
-		.replace(/\s+/g," ").split(" ");
+	var words = split(txt)
+	FISTIR = words;
 
 	var text = "";
 
