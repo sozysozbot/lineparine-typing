@@ -12,6 +12,8 @@
 
 .nolipa { font-family:"Arial"; }
 
+#word{ font-size: 100%; }
+
 body{width:70%; margin: 0 auto;}
 #main{font-size:110%; margin: 30px;}
 </style>
@@ -22,12 +24,13 @@ body{width:70%; margin: 0 auto;}
 </head>
 <body>
 <div id="main">
-単語を入力（複数可）：<input type="text" id="word" size="50" value="dytyleter paskeffesnej laaxmelen"/><input type="button" onclick="gui(document.getElementById('word').value)" value="分解"><br>
+単語を入力（複数可）：<input class="toggle" type="text" id="word" size="40" value="dytyleter paskeffesnej laaxmelen"/><input type="button" onclick="gui(document.getElementById('word').value)" value="分解"><br>
 <ul style="list-style-type: none;padding: 0 ;">
 	<li>
 <label><input type="checkbox" id="obsolete">廃止された緩衝子音などを使う</label></li>
 <li><label><input type="checkbox" id="json">データをJSON形式で出力する</label>
 </li>
+<li><label><input type="checkbox" onclick="toggle(this.checked)">リパーシェで表示する</label></li>
 </ul>
 <div id="ans"></div>
 </div>
