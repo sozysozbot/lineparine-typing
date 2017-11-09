@@ -25,6 +25,7 @@ if(!document.getElementById("json").checked){
 	}
 	
 	document.getElementById("ans").innerHTML = text;
+	toggle(document.getElementById("toggler").checked);
 } else {
 	document.getElementById("ans").innerHTML 
 		= "<textarea>" + JSON.stringify(FISTIR) + "</textarea>"
