@@ -9,8 +9,8 @@ var FISTIR = [];
 function gui(txt)
 {
 	var words = split(txt)
-	FISTIR = words;
-
+	FISTIR = words.map(u => [u, decompose(u)]);
+if(!document.getElementById("json").checked){
 	var text = "";
 
 	for(var j=0; j<words.length; j++) {
@@ -25,4 +25,8 @@ function gui(txt)
 	}
 	
 	document.getElementById("ans").innerHTML = text;
+} else {
+	document.getElementById("ans").innerHTML 
+		= "<textarea>" + JSON.stringify(FISTIR) + "</textarea>"
+}
 }
