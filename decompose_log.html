@@ -136,5 +136,142 @@ fafs f. sashimi「多分実例がない。格助詞と-tは間が無菌状態が
 <h2>12. 数</h2>
 <p>100tvamとか3'dとかに対応した。</p>
 <p>「fente2とかdyty100'dみたいな表現って（意味が通らないのはともかくとして）文法上合法？」と訊いたところ、「合法」とのこと。ちなみにFixa.siertija氏が「fente2、何かに使えそう。コンピュータに関係する反対運動の総称とか(ゲームしてたりスマホ使ってたら頭が悪くなるみたいな類い)」などと興味深い発想をしていた。（以上のやり取りもTWTで行われた。）</p>
+
+<h2>13. 形態素集計</h2>
+<h3>13-1. とりあえず集計しよう</h3>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="ja"><p lang="ja" dir="ltr">調整ぜんぜん效くので、形態素頻出度も提出して✧♡(⋈◍＞◡＜◍)。✧♡</p>&mdash; 🏙 (@sashimiwiki) <a href="https://twitter.com/sashimiwiki/status/925867023896154112?ref_src=twsrc%5Etfw">2017年11月1日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>と言われてたやつを放置してしまっていたので、形態素の集計をとった。というか、コーパスを理語分解器に突っ込んだファイルは<a href="https://github.com/sozysozbot/lineparine-corpus/blob/%E3%81%84%E3%81%9B%E3%81%AB%E3%81%BB/decomposed.json">既にある</a>ので、後はスクリプトに数えさせるだけである。</p>
+
+<p>とは言ったものの、数え方が問題である。緩衝音とクラスの一致とかを実装していないこともあり、実際に可能な分解よりも多くの分解候補が出てしまう。</p>
+<p>仕方がないので、統計を2通り取ることにした。</p>
+<ol><li>分解方法が単一である単語のみについて集計する</li><li>例えば、ある単語について分解の方法が4種類あったら、候補としてありうる形態素が1/4個ずつ出てきた計算でカウントする</li></ol>
+<p>1.を「按分なし」、2.を「按分あり」と呼ぶこととする。</p>
+<p>分析結果は次のような感じである。</p>
+<img src="anbun_nasi.png" height="250"/>
+<img src="anbun_ari.png" height="250"/>
+<table cellpadding="30"><tr><td>
+<pre>
+按分なし:
+-'d	867	4.36%
+lex	801	4.02%
+mi	706	3.55%
+es	676	3.40%
+-o	613	3.08%
+la	612	3.07%
+-'i	560	2.81%
+-'s	539	2.71%
+niv	383	1.92%
+mal	339	1.70%
+-e-	324	1.63%
+co	291	1.46%
+ad	278	1.40%
+fqa	249	1.25%
+lkurf	226	1.14%
+mol	191	0.96%
+dijyk	180	0.90%
+aiar	169	0.85%
+-a-	164	0.82%
+1	162	0.81%
+-en	161	0.81%
+cene	160	0.80%
+si	157	0.79%
+-es	155	0.78%
+-ss	148	0.74%
+</pre></td><td>
+<pre>
+按分あり:
+-o	1181.035926	4.26%
+-'d	1042.000000	3.76%
+lex	840.000000	3.03%
+mi	726.397436	2.62%
+es	719.576610	2.60%
+-'i	718.033766	2.59%
+la	716.000000	2.58%
+-'s	692.500000	2.50%
+-r-	585.140000	2.11%
+-e-	560.444049	2.02%
+-a-	394.038595	1.42%
+niv	388.000000	1.40%
+-es	345.565179	1.25%
+mal	340.539683	1.23%
+i	316.964752	1.14%
+co	297.000000	1.07%
+ad	279.000000	1.01%
+-en	250.679004	0.90%
+fqa	250.000000	0.90%
+-l-	239.630541	0.86%
+io	238.750000	0.86%
+lkurf	236.666667	0.85%
+-j	231.071640	0.83%
+-t	229.657143	0.83%
+-u-	223.274459	0.81%
+</pre></td></tr></table>
+<p>なお、分析結果の数値データは<a href="https://docs.google.com/spreadsheets/d/1rRim10YDRI68L5PkVKn3sea4hoO4ItwrrBl2iem2Jv8/edit#gid=1211209395">こちら</a>、使用したソースコードは<a href="https://gist.github.com/sozysozbot/1c45309c64b0d58fc7c6d9e80630dc34">こちら</a>に置いてある。</p>
+<p>気づくこととしては、まず、統計の取り方で順位がそれなりに変わってくることである。あと、例文の偏りのせいでdijyk（自明に<a href="https://sites.google.com/site/riparaincangku/lipadiax/krandiulja/selene-knloan-dijyk-58">りん</a><a href="https://sites.google.com/site/riparaincangku/lipadiax/krandiulja/dvcg">ご文</a>のせい）とaiar（どう考えても<a href="https://sites.google.com/site/riparaincangku/lipadiax/krandiulja/aiar-sopit">航空法</a>が原因）が上位に入っているのがこれまたアレである。ceneもcenestiが混入してるだろうし。</p>
+<h3>13-2. コーパス整理</h3>
+<p>ということで、りんご文と航空法を取り除いてもう一回やってみよう。また、前に文字頻度を測った（「考察する」シリーズ未収録。<a href="https://docs.google.com/spreadsheets/d/1bgegnwxKRcrm-zQwxkHyh8uLAE6BjoHb6YXrqvnDD1c/edit#gid=0">ここ</a>にデータがある）際に、いせにほだけ有意にアポストロフィの頻度が低かった（「翠君にわかりやすくするため格語尾避けて話してるから」とのこと）、とかもあるので、cenesti問題のことも考えていせにほも除くこととする。
+<p>んで取り直したものがこちら</p>
+<img src="anbun_nasi_zyunkwa.png" height="250"/>
+<img src="anbun_ari_zyunkwa.png" height="250"/>
+<table cellpadding="30"><tr><td>
+<pre>
+按分なし:
+lex	639	5.05%
+mi	498	3.93%
+la	491	3.88%
+-'s	430	3.39%
+es	417	3.29%
+-'d	410	3.24%
+-'i	385	3.04%
+-o	343	2.71%
+mal	266	2.10%
+niv	249	1.97%
+-e-	205	1.62%
+lkurf	155	1.22%
+mol	144	1.14%
+co	142	1.12%
+-a-	132	1.04%
+pa	125	0.99%
+-en	123	0.97%
+fqa	121	0.96%
+ad	116	0.92%
+liaxa	104	0.82%
+-ss	98	0.77%
+als	97	0.77%
+-on	94	0.74%
+si	92	0.73%
+xale	89	0.70%
+</pre></td><td>
+<pre>
+按分あり:
+-o	693.284729	3.92%
+lex	652.000000	3.69%
+la	575.500000	3.26%
+-'s	553.500000	3.13%
+-'d	517.000000	2.93%
+mi	516.897436	2.93%
+-'i	509.473160	2.88%
+es	448.142208	2.54%
+-r-	374.638041	2.12%
+-e-	368.113295	2.08%
+mal	267.539683	1.51%
+-a-	257.559621	1.46%
+niv	253.000000	1.43%
+-es	228.953030	1.30%
+-en	180.445671	1.02%
+i	172.158691	0.97%
+-j	164.851396	0.93%
+-l-	164.820500	0.93%
+lkurf	164.166667	0.93%
+-on	147.133333	0.83%
+co	146.666667	0.83%
+mol	144.833333	0.82%
+-t	144.323810	0.82%
+-ss	139.800000	0.79%
+io	129.250000	0.73%
+</pre></td></tr></table>
+<p>なお、分析結果の数値データは<a href="https://docs.google.com/spreadsheets/d/1t-I0_oLlk3i_S_bWiajRyKl_QulwoXXzeM9n5zh72ig/edit#gid=1211209395">こちら</a>に置いてある。ソースコードは前回と同じ。</p>
 </body>
 </html>
