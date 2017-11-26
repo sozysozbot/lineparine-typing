@@ -131,7 +131,7 @@ fafs f. sashimi「多分実例がない。格助詞と-tは間が無菌状態が
 <p>結果、表は次のようになる。</p>
 <img src="table2.png" width="800"/>
 
-<h2>11. リパーシェ表示機能</h2>
+<h2 id="i11">11. リパーシェ表示機能</h2>
 <p>「表示をリパーシェに変更したり、しなかったりできるチェックボックス」が欲しいと言われたので作った。</p>
 
 <h2>12. 数</h2>
@@ -316,6 +316,29 @@ io	129.250000	0.73%
 <p>なお、この調査の過程でコーパスのtypoを発見した。</p>
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="da" dir="ltr"><a href="https://twitter.com/sashimiwiki?ref_src=twsrc%5Etfw">@sashimiwiki</a> tvacarerl →tvarcarerl <a href="https://t.co/UPf53TUwne">https://t.co/UPf53TUwne</a></p>&mdash; .sozysozbot.@hsjoihs@jekto.vatimeliju (@sosoBOTpi) <a href="https://twitter.com/sosoBOTpi/status/931803037428887552?ref_src=twsrc%5Etfw">2017年11月18日</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="i15">15. 理語辞書の美化に向けて</h2>
+<p>話は遡るが、2017年11月8日~9日頃に、<a href="beautify_dict.txt">DMで話した</a>ところ、</p>
+<blockquote><pre>
+そういえば形態素解析機、そのまま辞書で意味が見られるようにすると便利だ
+・形態素解析機に付加したいもの
+-表示をリパーシェに変更したり、しなかったりチェックボックス
+-分析した形態素の意味(訳語部分？)を表示する。
+-共起表現をコーパスから取り出す
+</pre></blockquote>
+<p>と言われた。</p>
+<p>このうち、「表示をリパーシェに変更したり、しなかったりチェックボックス」は<a href="#i11">11.</a>で作った。一方、「分析した形態素の意味(訳語部分？)を表示する」ためには、「訳語」欄に語源と派生語も入ってしまっているという現状のOTM-JSONの問題を解決しなくてはいけない。「手作業で分離するのはめんどいから、なんかスクリプト書くしかない」わけだが。「PDICの吐いたファイルをアップロードする→OTMに変換して→形態素分解・意義表示器が使える形式に自動変換までしてくれるのがいいよね」みたいなことを言われたので、当時のOTM-JSONを作成したZiphilさんに訊いてみたところ、</p>
+
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/Ziphil?ref_src=twsrc%5Etfw">@ziphil</a> この「単純変換」のスクリプトとかってあります？（諸用途のため理語辞書用のチューニングをしたい） <a href="https://t.co/B703PcEZbv">https://t.co/B703PcEZbv</a></p>&mdash; .sozysozbot.@hsjoihs@jekto.vatimeliju (@sosoBOTpi) <a href="https://twitter.com/sosoBOTpi/status/928498185173024769?ref_src=twsrc%5Etfw">2017年11月9日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="ja"><p lang="ja" dir="ltr">ZpDICの変換機能を使ったのでスクリプト単体はありません。</p>&mdash; Ziphil Shaleiras (@Ziphil) <a href="https://twitter.com/Ziphil/status/928503533808238592?ref_src=twsrc%5Etfw">2017年11月9日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>とのこと。</p>
+<p>ということで、OTMまでの変換はできているので、それを機械に読みやすい形に美化するためのスクリプトを書かなくてはならない。</p>
+
+<h2 id="i16">16. 理語辞書は更新された</h2>
+<p><a href="#i15">15.</a>で言及したスクリプトはまだ作っていないが、それはそうと、Githubに上がっているOTMは<a href="https://github.com/jurliyuuri/LineparineJson/commit/7d1850193594086aaac7e100cf43ff97bb21dc02">2017年4月3日</a>のものだったりする。これではアレなので、とりあえずOTMだけでも<a href="https://github.com/jurliyuuri/LineparineJson/commit/5bcc26d99be5078f76c77bb354251209f52faf90">更新した</a>。もちろん分解器は追いついていないので、スクリプトを書くとかしてなんとかせねばである。</p>
+
 
 <div id="menu">読み込み中…</div>
 <div id="menuButton" onclick="openClose()">≡</div>
