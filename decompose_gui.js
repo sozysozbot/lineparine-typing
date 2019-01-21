@@ -14,7 +14,7 @@ if(!document.getElementById("json").checked){
 	var text = "";
 
 	for(var j=0; j<words.length; j++) {
-		text +=  "<br><span class='toggle'>" + words[j] + "</span>:";
+		text +=  "<br><span class='toggle'>" + escapeHTML(words[j]) + "</span>:";
 		text += "<table>";
 		var result = decompose(words[j]);
 		
@@ -24,7 +24,8 @@ if(!document.getElementById("json").checked){
 				if(k != 0){
 					text += ", ";
 				}
-				text +="<a href='http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs' target='_blank'>" + result[i][k] + "</a>";
+				var url = "http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs";
+				text +="<a href='" + escapeHTML(url) + "' target='_blank'>" + escapeHTML(result[i][k]) + "</a>";
 			}
 			text += "</td></tr>";
 		}
@@ -45,6 +46,10 @@ function toggle(isLiparxe)
 	for(var i=0; i<arr.length; i++) {
 		arr[i].style.fontFamily = isLiparxe ? "Cirlipa" : "none";
 	}
+}
+
+function escapeHTML(string) {
+	return string.replace(/&/g, "&amp;").replace(/'/g, "&#039;");
 }
 
 document.addEventListener("DOMContentLoaded", function() {
