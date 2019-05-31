@@ -6,21 +6,21 @@ function split(txt) {
 }
 var FISTIR = [];
 function gui() {
-    var words = split(document.getElementById('word').value);
+    const words = split(document.getElementById('word').value);
     FISTIR = words.map(u => [u, decompose(u)]);
     if (!document.getElementById("json").checked) {
-        var text = "";
-        for (var j = 0; j < words.length; j++) {
+        let text = "";
+        for (let j = 0; j < words.length; j++) {
             text += "<br><span class='toggle'>" + escapeHTML(words[j]) + "</span>:";
             text += "<table>";
-            var result = decompose(words[j]);
-            for (var i = 0; i < result.length; i++) {
+            let result = decompose(words[j]);
+            for (let i = 0; i < result.length; i++) {
                 text += "<tr><td class='toggle'>";
-                for (var k = 0; k < result[i].length; k++) {
+                for (let k = 0; k < result[i].length; k++) {
                     if (k != 0) {
                         text += ", ";
                     }
-                    var url = "http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs";
+                    let url = "http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs";
                     text += "<a href='" + escapeHTML(url) + "' target='_blank'>" + escapeHTML(result[i][k]) + "</a>";
                 }
                 text += "</td></tr>";
@@ -36,7 +36,7 @@ function gui() {
     }
 }
 function toggle(isLiparxe) {
-    var arr = document.getElementsByClassName("toggle");
+    let arr = document.getElementsByClassName("toggle");
     for (var i = 0; i < arr.length; i++) {
         arr[i].style.fontFamily = isLiparxe ? "Cirlipa" : "none";
     }

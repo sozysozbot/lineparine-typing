@@ -6,23 +6,23 @@ function split(txt: string) {
 }
 var FISTIR = [];
 function gui() {
-    var words = split((document.getElementById('word') as HTMLInputElement).value);
+    const words = split((document.getElementById('word') as HTMLInputElement).value);
     FISTIR = words.map(u => [u, decompose(u)]);
     if (!(document.getElementById("json") as HTMLInputElement).checked) {
-        var text = "";
+        let text = "";
 
-        for (var j = 0; j < words.length; j++) {
+        for (let j = 0; j < words.length; j++) {
             text += "<br><span class='toggle'>" + escapeHTML(words[j]) + "</span>:";
             text += "<table>";
-            var result = decompose(words[j]);
+            let result = decompose(words[j]);
 
-            for (var i = 0; i < result.length; i++) {
+            for (let i = 0; i < result.length; i++) {
                 text += "<tr><td class='toggle'>";
-                for (var k = 0; k < result[i].length; k++) {
+                for (let k = 0; k < result[i].length; k++) {
                     if (k != 0) {
                         text += ", ";
                     }
-                    var url = "http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs";
+                    let url = "http://twoc.ever.jp/twoc/conlang.cgi?search=" + encodeURIComponent(result[i][k]) + "&type=0&agree=0&mode=search&user_id=fafs";
                     text += "<a href='" + escapeHTML(url) + "' target='_blank'>" + escapeHTML(result[i][k]) + "</a>";
                 }
                 text += "</td></tr>";
@@ -39,7 +39,7 @@ function gui() {
 }
 
 function toggle(isLiparxe: boolean) {
-    var arr: HTMLCollectionOf<HTMLInputElement> = document.getElementsByClassName("toggle") as HTMLCollectionOf<HTMLInputElement>;
+    let arr: HTMLCollectionOf<HTMLInputElement> = document.getElementsByClassName("toggle") as HTMLCollectionOf<HTMLInputElement>;
     for (var i = 0; i < arr.length; i++) {
         arr[i].style.fontFamily = isLiparxe ? "Cirlipa" : "none";
     }

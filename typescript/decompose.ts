@@ -17,7 +17,7 @@ function getW() {
  *
  */
 function decompose_(text: string, previousState: state): string[][] {
-    var possibleStates: state_noninitial[] = getW().rules
+    const possibleStates: state_noninitial[] = getW().rules
         .filter(function(arr) { return arr && arr[0] == previousState })
         .map(function(arr) { return arr[1] });
 
@@ -29,18 +29,18 @@ function decompose_(text: string, previousState: state): string[][] {
         }
     }
 
-    var ans: string[][] = [];
-    for (var i = 0; i < possibleStates.length; i++) {
+    let ans: string[][] = [];
+    for (let i = 0; i < possibleStates.length; i++) {
         const state = possibleStates[i];
         if (state === "FINAL") { continue; }
 
-        var candidate: string[] = getW().words[state].filter(function(c: string) {
+        const candidate: string[] = getW().words[state].filter(function(c: string) {
             return text.startsWith(c.replace(/-/g, ""))
         });
 
-        for (var j = 0; j < candidate.length; j++) {
-            var newText = text.slice(candidate[j].replace(/-/g, "").length);
-            var results = decompose_(newText, possibleStates[i]).map(function(res) {
+        for (let j = 0; j < candidate.length; j++) {
+            const newText = text.slice(candidate[j].replace(/-/g, "").length);
+            const results = decompose_(newText, possibleStates[i]).map(function(res) {
                 return [candidate[j]].concat(res);
             });
             ans = ans.concat(results);
