@@ -29,10 +29,14 @@ function decompose_(text, previousState) {
     }
     var ans = [];
     for (var i = 0; i < possibleStates.length; i++) {
-        if (possibleStates[i] === "FINAL") {
+        const state = possibleStates[i];
+        if (state === "FINAL") {
             continue;
         }
-        var candidate = getW().words[possibleStates[i]].filter(function (c) {
+        if (state === "INITIAL") {
+            throw new Error("should not happen; must not have INITIAL in the second arg");
+        }
+        var candidate = getW().words[state].filter(function (c) {
             return text.startsWith(c.replace(/-/g, ""));
         });
         for (var j = 0; j < candidate.length; j++) {

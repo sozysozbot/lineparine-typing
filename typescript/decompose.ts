@@ -34,9 +34,14 @@ function decompose_(text: string, previousState: state): string[][]
 
 	var ans: string[][] = [];
 	for(var i=0; i<possibleStates.length; i++) {
-		if(possibleStates[i] === "FINAL"){ continue; }
+		const state = possibleStates[i];
+		if(state === "FINAL"){ continue; }
 
-		var candidate: string[] = (getW().words[possibleStates[i] as "q" | "q-" | "-q" | "-t" | "-r-" | "-q1-" | "-q2-"] as string[]).filter(function(c: string){
+		if (state === "INITIAL") {
+			throw new Error("should not happen; must not have INITIAL in the second arg");
+		}
+
+		var candidate: string[] = getW().words[state].filter(function(c: string){
 			return text.startsWith(c.replace(/-/g,""))
 		});
 

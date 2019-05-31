@@ -1,6 +1,10 @@
-type state = "INITIAL" | "q" | "q-" | "pakda" 
+type state = "INITIAL" | keyof W_words | "FINAL";
+
+/*"q" | "q-" | "pakda" 
 	| "-q" | "-eu" | "-r-" | "-q1-" | "FINAL" 
-	| "-t" | "-q2-";
+	| "-t" | "-q2-"; */
+
+	
 
 type W_type = { 
 	"words": W_words;
