@@ -12,7 +12,7 @@ function getW() {
 /*
  * parse, from left, the possible parsing that can come after the previousState
  * if impossible, returns an empty array
- * decompose_("leter", "q-")
+ * decompose_("leter", "q-") --> ["-l-","et","-er"]
  *
  */
 function decompose_(text, previousState) {

@@ -2,7 +2,8 @@
     "compilerOptions": {
         "outDir": ".",
         "noImplicitThis": true,
-        "target": "es2016"
+        "target": "es2016",
+        "noImplicitAny": true
     },
     "include": [
         "typescript/*.ts"

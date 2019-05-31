@@ -1,4 +1,4 @@
-function decompose(text)
+function decompose(text: string)
 {
 	return decompose_(text, "INITIAL");
 }
@@ -15,12 +15,12 @@ function getW()
 /*
  * parse, from left, the possible parsing that can come after the previousState
  * if impossible, returns an empty array
- * decompose_("leter", "q-")
+ * decompose_("leter", "q-") --> ["-l-","et","-er"]
  *
  */
-function decompose_(text, previousState)
+function decompose_(text: string, previousState: state): string[][]
 {
-	var possibleStates = getW().rules
+	var possibleStates: state[] = getW().rules
 		.filter(function(arr){return arr && arr[0] == previousState})
 		.map(function(arr){return arr[1]});
 
@@ -32,11 +32,11 @@ function decompose_(text, previousState)
 		}
 	}
 
-	var ans = [];
+	var ans: string[][] = [];
 	for(var i=0; i<possibleStates.length; i++) {
 		if(possibleStates[i] === "FINAL"){ continue; }
 
-		var candidate = getW().words[possibleStates[i]].filter(function(c){
+		var candidate: string[] = (getW().words[possibleStates[i] as "q" | "q-" | "-q" | "-t" | "-r-" | "-q1-" | "-q2-"] as string[]).filter(function(c: string){
 			return text.startsWith(c.replace(/-/g,""))
 		});
 

@@ -1,4 +1,4 @@
-function split(txt)
+function split(txt: string)
 {
 	return txt.toLowerCase()
 		.replace(/[,\.\?!<>":【】=…()\/―]/g," ")
@@ -40,7 +40,7 @@ if(!(document.getElementById("json") as HTMLInputElement).checked){
 }
 }
 
-function toggle(isLiparxe)
+function toggle(isLiparxe: boolean)
 {
 	var arr : HTMLCollectionOf<HTMLInputElement> = document.getElementsByClassName("toggle") as HTMLCollectionOf<HTMLInputElement>;
 	for(var i=0; i<arr.length; i++) {
@@ -48,7 +48,7 @@ function toggle(isLiparxe)
 	}
 }
 
-function escapeHTML(string) {
+function escapeHTML(string: string) {
 	return string.replace(/&/g, "&amp;").replace(/'/g, "&#039;");
 }
 
