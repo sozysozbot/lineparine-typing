@@ -20,7 +20,7 @@ function getW()
  */
 function decompose_(text: string, previousState: state): string[][]
 {
-	var possibleStates: state[] = getW().rules
+	var possibleStates: state_noninitial[] = getW().rules
 		.filter(function(arr){return arr && arr[0] == previousState})
 		.map(function(arr){return arr[1]});
 
@@ -36,10 +36,6 @@ function decompose_(text: string, previousState: state): string[][]
 	for(var i=0; i<possibleStates.length; i++) {
 		const state = possibleStates[i];
 		if(state === "FINAL"){ continue; }
-
-		if (state === "INITIAL") {
-			throw new Error("should not happen; must not have INITIAL in the second arg");
-		}
 
 		var candidate: string[] = getW().words[state].filter(function(c: string){
 			return text.startsWith(c.replace(/-/g,""))

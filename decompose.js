@@ -33,9 +33,6 @@ function decompose_(text, previousState) {
         if (state === "FINAL") {
             continue;
         }
-        if (state === "INITIAL") {
-            throw new Error("should not happen; must not have INITIAL in the second arg");
-        }
         var candidate = getW().words[state].filter(function (c) {
             return text.startsWith(c.replace(/-/g, ""));
         });

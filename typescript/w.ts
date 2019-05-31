@@ -1,5 +1,5 @@
-type state = "INITIAL" | keyof W_words | "FINAL";
-
+type state = "INITIAL" | state_noninitial;
+type state_noninitial = keyof W_words | "FINAL";
 /*"q" | "q-" | "pakda" 
 	| "-q" | "-eu" | "-r-" | "-q1-" | "FINAL" 
 	| "-t" | "-q2-"; */
@@ -16,7 +16,7 @@ type W_type = {
 	"pakda"?: string[],
 	"-q1-"?: string[],
 	"-q2-"?: string[],
-	"rules": [state, state][];
+	"rules": [state, state_noninitial][];
 }
 	
 type W_words = {
