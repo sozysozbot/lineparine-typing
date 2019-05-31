@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": ".",
+        "noImplicitThis": true,
+        "target": "es2016"
+    },
+    "include": [
+        "typescript/*.ts"
+    ],
+    "exclude": []
+}
