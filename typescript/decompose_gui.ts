@@ -32,10 +32,10 @@ if(!(document.getElementById("json") as HTMLInputElement).checked){
 		text += "</table>";
 	}
 	
-	document.getElementById("ans").innerHTML = text;
+	document.getElementById("ans")!.innerHTML = text;
 	toggle((document.getElementById("toggler") as HTMLInputElement).checked);
 } else {
-	document.getElementById("ans").innerHTML 
+	document.getElementById("ans")!.innerHTML 
 		= "<textarea>" + JSON.stringify(FISTIR) + "</textarea>"
 }
 }
@@ -53,8 +53,8 @@ function escapeHTML(string: string) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("split").addEventListener("click", gui);
-	document.getElementById("word").addEventListener("keypress", function(e) {
+	document.getElementById("split")!.addEventListener("click", gui);
+	document.getElementById("word")!.addEventListener("keypress", function(e) {
 		if (e.keyCode == 13) {
 			gui();
 		}

@@ -3,7 +3,8 @@
         "outDir": ".",
         "noImplicitThis": true,
         "target": "es2016",
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "strictNullChecks": true
     },
     "include": [
         "typescript/*.ts"
