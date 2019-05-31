@@ -4,7 +4,7 @@ function split(txt: string) {
         .replace(/\s+/g, " ").split(" ")
         .filter(function(a) { return a.length > 0; });
 }
-var FISTIR = [];
+var FISTIR: Array<[string, string[][]]> = [];
 function gui() {
     const words = split((document.getElementById('word') as HTMLInputElement).value);
     FISTIR = words.map(u => [u, decompose(u)]);
