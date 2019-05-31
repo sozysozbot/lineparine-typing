@@ -23,8 +23,8 @@ type W_words = {
 	"-r-": string[]; 
 	"-q1-": string[]; 
 	"-q2-": string[]; 
-	"-eu"?: string[];
-	"pakda"?: string[];
+	"-eu": string[];
+	"pakda": string[];
 };
 
 var W: W_type = {
