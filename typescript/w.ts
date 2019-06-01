@@ -8,14 +8,6 @@ type state_noninitial = keyof W_words | "FINAL";
 
 type W_type = { 
 	"words": W_words;
-	"q-"?: string[],
-	"-q"?: string[],
-	"-eu"?: string[],
-	"-t"?: string[],
-	"-r-"?: string[],
-	"pakda"?: string[],
-	"-q1-"?: string[],
-	"-q2-"?: string[],
 	"rules": [state, state_noninitial][];
 }
 	
