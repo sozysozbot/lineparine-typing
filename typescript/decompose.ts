@@ -56,9 +56,9 @@ function lastLetter(word: string) {
         "i", "y", "u", "o", "e", "a",
         "p", "f", "t", "c", "x", "k", "q", "h", "r", "z", "m", "n", "r", "l", "j", "w", "b", "v", "d", "s", "g",
     ];
-    for (const letter in letters) {
-        if (word.replace('-', '').replace("'", '').endsWith(letter)) {
-            return letter;
+    for (let i = 0; i < letters.length; i++) {
+        if (word.replace('-', '').replace("'", '').endsWith(letters[i])) {
+            return letters[i];
         }
     }
     return '';
@@ -70,12 +70,12 @@ function lastVowelLetter(word: string) {
 
 function isMatchToClass(left: string, right: string) {
     const classMap: { [index: string]: string[]; } = {
-        ['a']: ["-a-", "-v-",],
-        ['o']: ["-a-", "-v-",],
-        ['e']: ["-e-", "-rg-",],
-        ['i']: ["-e-", "-rg-",],
-        ['u']: ["-u-", "-m-",],
-        ['y']: ["-i-", "-l-",],
+        ['a']: ['-a-', '-v-',],
+        ['o']: ['-a-', '-v-',],
+        ['e']: ['-e-', '-rg-', '-b-', '-f-', '-j-', '-kh-', '-rj-', '-rv-', '-rw-', '-rz-', '-s-', '-w-'],
+        ['i']: ['-e-', '-rg-', '-b-', '-f-', '-j-', '-kh-', '-rj-', '-rv-', '-rw-', '-rz-', '-s-', '-w-'],
+        ['u']: ['-u-', '-m-',],
+        ['y']: ['-i-', '-l-',],
     };
     return classMap[lastVowelLetter(left)].includes(right);
 }

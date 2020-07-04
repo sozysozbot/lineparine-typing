@@ -1,5 +1,5 @@
 function decompose(text) {
-    return decompose_(text, "INITIAL");
+    return decompose_(text, "INITIAL", '');
 }
 function getW() {
     if (document.getElementById("obsolete").checked) {
@@ -15,7 +15,7 @@ function getW() {
  * decompose_("leter", "q-") --> ["-l-","et","-er"]
  *
  */
-function decompose_(text, previousState) {
+function decompose_(text, previousState, previousText) {
     const possibleStates = getW().rules
         .filter(function (arr) { return arr && arr[0] == previousState; })
         .map(function (arr) { return arr[1]; });
@@ -37,12 +37,42 @@ function decompose_(text, previousState) {
             return text.startsWith(c.replace(/-/g, ""));
         });
         for (let j = 0; j < candidate.length; j++) {
+            if ((state == '-q1-' || state == '-q2-') && !isMatchToClass(previousText, candidate[j])) {
+                continue;
+            }
             const newText = text.slice(candidate[j].replace(/-/g, "").length);
-            const results = decompose_(newText, possibleStates[i]).map(function (res) {
+            const results = decompose_(newText, possibleStates[i], previousText + candidate[j]).map(function (res) {
                 return [candidate[j]].concat(res);
             });
             ans = ans.concat(results);
         }
     }
     return ans;
+}
+function lastLetter(word) {
+    const letters = [
+        "fh", "vh", "dz", "ph", "ts", "ch", "ng", "sh", "th", "dh", "kh", "rkh", "rl",
+        "i", "y", "u", "o", "e", "a",
+        "p", "f", "t", "c", "x", "k", "q", "h", "r", "z", "m", "n", "r", "l", "j", "w", "b", "v", "d", "s", "g",
+    ];
+    for (let i = 0; i < letters.length; i++) {
+        if (word.replace('-', '').replace("'", '').endsWith(letters[i])) {
+            return letters[i];
+        }
+    }
+    return '';
+}
+function lastVowelLetter(word) {
+    return lastLetter(word.replace(/[^iyuoea]/g, ''));
+}
+function isMatchToClass(left, right) {
+    const classMap = {
+        ['a']: ['-a-', '-v-',],
+        ['o']: ['-a-', '-v-',],
+        ['e']: ['-e-', '-rg-', '-b-', '-f-', '-j-', '-kh-', '-rj-', '-rv-', '-rw-', '-rz-', '-s-', '-w-'],
+        ['i']: ['-e-', '-rg-', '-b-', '-f-', '-j-', '-kh-', '-rj-', '-rv-', '-rw-', '-rz-', '-s-', '-w-'],
+        ['u']: ['-u-', '-m-',],
+        ['y']: ['-i-', '-l-',],
+    };
+    return classMap[lastVowelLetter(left)].includes(right);
 }
